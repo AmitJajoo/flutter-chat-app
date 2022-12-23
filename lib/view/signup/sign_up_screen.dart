@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tech_media/res/component/input_text_field.dart';
 import 'package:tech_media/res/component/round_button.dart';
 import 'package:tech_media/utils/routes/route_name.dart';
-import 'package:tech_media/view_model/signup/sign_controoler.dart';
+import 'package:tech_media/view_model/signup/sign_controller.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -128,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onPress: () {
                             if (_formKey.currentState!.validate()) {
                               provider.signUp(
+                                  context,
                                   userController.text,
                                   emailController.text,
                                   passwordController.text);

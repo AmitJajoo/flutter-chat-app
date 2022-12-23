@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_media/utils/routes/route_name.dart';
+import 'package:tech_media/view/dashboard/dashboard.dart';
+import 'package:tech_media/view/forgot_password/forgot_password.dart';
 import 'package:tech_media/view/login/login_screen.dart';
 import 'package:tech_media/view/signup/sign_up_screen.dart';
 import 'package:tech_media/view/splash/splash_screen.dart';
@@ -21,6 +23,11 @@ class Routes {
       case RouteName.signUpView:
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
+      case RouteName.dashboardView:
+        return MaterialPageRoute(builder: (_) => const Dashboard());
+
+      case RouteName.forgotPassword:
+        return MaterialPageRoute(builder: (_) => const ForgotPassword());
       default:
         return MaterialPageRoute(builder: (_) {
           return Scaffold(

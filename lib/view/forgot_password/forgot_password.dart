@@ -4,22 +4,20 @@ import 'package:tech_media/res/component/input_text_field.dart';
 import 'package:tech_media/res/component/round_button.dart';
 import 'package:tech_media/utils/routes/route_name.dart';
 import 'package:tech_media/utils/utils.dart';
+import 'package:tech_media/view_model/forget_password/forget_password_controller.dart';
 import 'package:tech_media/view_model/login/login_controller.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final emailFocusNode = FocusNode();
-
-  final passwordController = TextEditingController();
-  final passwordFocusNode = FocusNode();
 
   @override
   void dispose() {
@@ -27,9 +25,6 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     emailController.dispose();
     emailFocusNode.dispose();
-
-    passwordController.dispose();
-    passwordFocusNode.dispose();
   }
 
   @override
@@ -48,14 +43,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: height * 0.01,
                 ),
                 Text(
-                  "Welcome to the App",
+                  "Forgot Password",
                   style: Theme.of(context).textTheme.headline3,
                 ),
                 SizedBox(
                   height: height * 0.01,
                 ),
                 Text(
-                  "Enter your email address\nto connect to your account",
+                  "Enter your email address\nto recover your password",
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.subtitle1,
                 ),
@@ -73,8 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               myController: emailController,
                               focusNode: emailFocusNode,
                               onFiledSubmittedValue: (value) {
-                                Utils.fieldFocus(
-                                    context, emailFocusNode, passwordFocusNode);
+                          
                               },
                               keyboardType: TextInputType.emailAddress,
                               obscureText: false,
@@ -82,43 +76,22 @@ class _LoginScreenState extends State<LoginScreen> {
                               onValidator: (value) {
                                 return value.isEmpty ? 'Enter email' : null;
                               }),
-                          InputTextField(
-                              myController: passwordController,
-                              focusNode: passwordFocusNode,
-                              onFiledSubmittedValue: (value) {},
-                              keyboardType: TextInputType.text,
-                              obscureText: true,
-                              hint: 'Password',
-                              onValidator: (value) {
-                                return value.isEmpty ? 'Enter email' : null;
-                              }),
+                          
                         ],
                       ),
                     )),
-                InkWell(
-                  onTap: (){
-                    Navigator.pushNamed(context, RouteName.forgotPassword);
-                  },
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forgot Password?",
-                      style: Theme.of(context).textTheme.headline2!.copyWith(
-                          fontSize: 15, decoration: TextDecoration.underline),
-                    ),
-                  ),
-                ),
+                
                 const SizedBox(
                   height: 40,
                 ),
-                ChangeNotifierProvider(create: (_)=>LoginController(),
-                child: Consumer<LoginController>(builder: (context,provider,child){
+                ChangeNotifierProvider(create: (_)=>ForgetPasswordController(),
+                child: Consumer<ForgetPasswordController>(builder: (context,provider,child){
                   return RoundButton(
-                    title: "Login", 
+                    title: "Recover", 
                   loading: provider.loading,
                   onPress: () {
                     if(_formKey.currentState!.validate()){
-                      provider.login(context, emailController.text, passwordController.text);
+                      provider.forgotPassword(context, emailController.text);
                     }
                   });
                 }),
