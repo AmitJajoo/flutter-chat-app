@@ -36,6 +36,7 @@ class MyApp extends StatelessWidget {
           )
         ),
         textTheme: const TextTheme(
+          
           headline1: TextStyle(
             fontSize: 40,
             fontFamily: AppFonts.sfProDisplayMedium,

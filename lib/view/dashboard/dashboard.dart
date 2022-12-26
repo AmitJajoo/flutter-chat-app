@@ -1,10 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent-tab-view.dart';
 import 'package:tech_media/res/color.dart';
-import 'package:tech_media/utils/routes/route_name.dart';
-import 'package:tech_media/view_model/services/session_manager.dart';
+import 'package:tech_media/view/dashboard/profile/profile_screen.dart';
+
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key});
@@ -14,23 +13,22 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  PersistentTabController _controller =
-      PersistentTabController(initialIndex: 0);
+  PersistentTabController _controller = PersistentTabController(initialIndex: 0);
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.home),
+        icon:const Icon(CupertinoIcons.home),
         activeColorPrimary: AppColors.primaryIconColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.chat_bubble),
+        icon:const Icon(CupertinoIcons.chat_bubble),
         activeColorPrimary: AppColors.primaryIconColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(
+        icon:const Icon(
           CupertinoIcons.add,
           color: AppColors.whiteColor,
         ),
@@ -38,14 +36,14 @@ class _DashboardState extends State<Dashboard> {
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(
+        icon:const Icon(
           CupertinoIcons.bubble_left_bubble_right,
         ),
         activeColorPrimary: AppColors.primaryIconColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.profile_circled),
+        icon:const Icon(CupertinoIcons.profile_circled),
         activeColorPrimary: AppColors.primaryIconColor,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
@@ -58,7 +56,7 @@ class _DashboardState extends State<Dashboard> {
       Text('Chat'),
       Text('Add'),
       Text('Message'),
-      Text('Profile')
+     const ProfileScreen()
     ];
   }
 
